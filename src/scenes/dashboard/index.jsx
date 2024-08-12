@@ -1,14 +1,22 @@
 import React from "react";
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  /*IconButton*/ Typography,
+  useTheme,
+} from "@mui/material";
 import { tokens } from "../../theme";
-import { mockTransactions } from "../../data/mockData";
+// import { mockTransactions } from "../../data/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
-import EmailIcon from "@mui/icons-material/Email";
-import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import TrafficIcon from "@mui/icons-material/Traffic";
+import AirportShuttleIcon from "@mui/icons-material/AirportShuttle";
+import AirportShuttleOutlinedIcon from "@mui/icons-material/AirportShuttleOutlined";
+import AirportShuttleSharpIcon from "@mui/icons-material/AirportShuttleSharp";
+import AirlineSeatReclineNormalIcon from "@mui/icons-material/AirlineSeatReclineNormal";
+// import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
+// import PersonAddIcon from "@mui/icons-material/PersonAdd";
+// import TrafficIcon from "@mui/icons-material/Traffic";
 import Header from "../../components/Header";
-import LineChart from "../../components/LineChart";
+// import LineChart from "../../components/LineChart";
 import GeographyChart from "../../components/GeographyChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
@@ -23,7 +31,10 @@ const Dashboard = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+        <Header
+          title="AMBULANCE DASHBOARD"
+          subtitle="Welcome to your dashboard"
+        />
 
         <Box>
           <Button
@@ -57,12 +68,12 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="12,361"
-            subtitle="Emails Sent"
-            progress="0.75"
-            increase="+14%"
+            title="12"
+            subtitle="Ambulances Live"
+            progress="0.4"
+            increase="+40%"
             icon={
-              <EmailIcon
+              <AirportShuttleIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -76,12 +87,12 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="431,225"
-            subtitle="Sales Obtained"
-            progress="0.50"
-            increase="+21%"
+            title="18"
+            subtitle="Ambulances Available"
+            progress="0.60"
+            increase="+60%"
             icon={
-              <PointOfSaleIcon
+              <AirportShuttleOutlinedIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -95,12 +106,12 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="32,441"
-            subtitle="New Clients"
-            progress="0.30"
-            increase="+5%"
+            title="30"
+            subtitle="Total Number of Ambulances"
+            progress="1.00"
+            increase="+100%"
             icon={
-              <PersonAddIcon
+              <AirportShuttleSharpIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -114,12 +125,12 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="1,325,134"
-            subtitle="Traffic Received"
-            progress="0.80"
-            increase="+43%"
+            title="18"
+            subtitle="Drivers Available"
+            progress="0.6"
+            increase="+60%"
             icon={
-              <TrafficIcon
+              <AirlineSeatReclineNormalIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -129,14 +140,14 @@ const Dashboard = () => {
         {/* ROW 2 */}
         <Box
           gridColumn="span 12"
-          gridRow="span 3" // Adjusted to span more rows
+          gridRow="span 2" // Adjusted to span more rows
           backgroundColor={colors.primary[400]}
         >
           <AmbulanceList /> {/* Insert the AmbulanceList component here */}
         </Box>
 
         {/* ROW 3 */}
-        <Box
+        {/* <Box
           gridColumn="span 8"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
@@ -175,8 +186,8 @@ const Dashboard = () => {
           <Box height="250px" m="-20px 0 0 0">
             <LineChart isDashboard={true} />
           </Box>
-        </Box>
-        <Box
+        </Box> */}
+        {/* <Box
           gridColumn="span 4"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
@@ -225,7 +236,7 @@ const Dashboard = () => {
               </Box>
             </Box>
           ))}
-        </Box>
+        </Box> */}
 
         {/* ROW 4 */}
         <Box
