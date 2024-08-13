@@ -138,12 +138,25 @@ const Dashboard = () => {
         </Box>
 
         {/* ROW 2 */}
+        {/* ROW 2 */}
         <Box
           gridColumn="span 12"
-          gridRow="span 2" // Adjusted to span more rows
+          gridRow="span 2"
           backgroundColor={colors.primary[400]}
         >
-          <AmbulanceList /> {/* Insert the AmbulanceList component here */}
+          <Box
+            display="flex"
+            justifyContent="center" // Center align the header
+            alignItems="center"
+            padding="40px" // Add padding for spacing
+          >
+            <Header title="AMBULANCE SERVICES" />
+          </Box>
+          <Box mb="0px">
+            {" "}
+            {/* Add margin-top for spacing between header and list */}
+            <AmbulanceList />
+          </Box>
         </Box>
 
         {/* ROW 3 */}

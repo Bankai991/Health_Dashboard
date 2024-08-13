@@ -6,7 +6,7 @@ function AmbulanceList() {
     {
       id: 1,
       name: "Patient Transfer",
-      imageUrl: "https://medcab.in/assets/catagory_icon/patient-ambu.png",
+      imageUrl: "/patient-ambu.png",
       description: "This is a Patient Transfer ambulance.",
     },
     {
