@@ -148,9 +148,9 @@ const Dashboard = () => {
             display="flex"
             justifyContent="center" // Center align the header
             alignItems="center"
-            padding="40px" // Add padding for spacing
+            padding="30px" // Add padding for spacing
           >
-            <Header title="AMBULANCE SERVICES" />
+            <Header title="AMBULANCE SERVICES" titleColor="rgb(76,206,172)" />
           </Box>
           <Box mb="0px">
             {" "}
