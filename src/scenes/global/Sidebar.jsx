@@ -62,11 +62,11 @@ const Sidebar = () => {
       }}
     >
       <ProSidebar collapsed={isCollapsed}>
-        <Menu iconShape="square">
+        <Menu iconShape="square">  
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
-            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}  
             style={{
               margin: "10px 0 20px 0",
               color: colors.grey[100],
@@ -91,7 +91,7 @@ const Sidebar = () => {
 
           {!isCollapsed && (
             <Box mb="25px">
-              <Box display="flex" justifyContent="center" alignItems="center">
+              <Box display="flex" justifyContent="center" alignItems="center">               
                 <img
                   alt="profile-user"
                   width="100px"
