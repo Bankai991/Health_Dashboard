@@ -1,37 +1,50 @@
 import { useState } from "react";
-import { Box, Typography, TextField, Button, useTheme, IconButton, Dialog, DialogTitle, DialogContent, DialogActions, Card, CardContent, Grid, Rating, Avatar } from "@mui/material";
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  useTheme,
+  IconButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Card,
+  CardContent,
+  Grid,
+  Rating,
+  Avatar,
+} from "@mui/material";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import AddIcon from "@mui/icons-material/Add";
+
 
 const DriverDetails = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  // Initialize with 9 default driver details including images and ratings
   const defaultDrivers = Array.from({ length: 9 }, (_, index) => ({
     name: `Driver ${index + 1}`,
     phone: `123-456-789${index}`,
     email: `driver${index + 1}@example.com`,
     license: `LIC${index + 1}`,
-    image: `https://via.placeholder.com/100`, // Placeholder image URL
-    rating: Math.floor(Math.random() * 5) + 1 // Random rating between 1 and 5
+    image: `${process.env.PUBLIC_URL}/assets/user.png`, // Use the image from the public directory
+    rating: Math.floor(Math.random() * 5) + 1,
+    reviews: Math.floor(Math.random() * 100) + 1,
   }));
+  
 
-  // State for form inputs
   const [driverName, setDriverName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [licenseNumber, setLicenseNumber] = useState("");
   const [driverImage, setDriverImage] = useState("");
 
-  // State for added drivers
   const [drivers, setDrivers] = useState(defaultDrivers);
-
-  // State for modal visibility
   const [open, setOpen] = useState(false);
 
-  // Handle form submission
   const handleAddDriver = () => {
     if (driverName && phoneNumber && email && licenseNumber && driverImage) {
       const newDriver = {
@@ -40,28 +53,25 @@ const DriverDetails = () => {
         email: email,
         license: licenseNumber,
         image: driverImage,
-        rating: Math.floor(Math.random() * 5) + 1 // Random rating between 1 and 5
+        rating: Math.floor(Math.random() * 5) + 1,
+        reviews: Math.floor(Math.random() * 100) + 1,
       };
       setDrivers([...drivers, newDriver]);
 
-      // Clear form fields
       setDriverName("");
       setPhoneNumber("");
       setEmail("");
       setLicenseNumber("");
       setDriverImage("");
 
-      // Close the modal
       setOpen(false);
     }
   };
 
-  // Open the modal
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  // Close the modal
   const handleClose = () => {
     setOpen(false);
   };
@@ -78,12 +88,13 @@ const DriverDetails = () => {
           right: 20,
           backgroundColor: colors.blueAccent[700],
           color: "white",
+          boxShadow: "0px 4px 20px rgba(0,0,0,0.2)",
           "&:hover": {
             backgroundColor: colors.blueAccent[800],
           },
         }}
       >
-        <AddIcon />
+        <AddIcon sx={{ fontSize: 28 }} />
       </IconButton>
 
       <Dialog open={open} onClose={handleClose}>
@@ -96,6 +107,7 @@ const DriverDetails = () => {
               flexDirection: "column",
               gap: "20px",
               backgroundColor: colors.primary[400],
+              borderRadius: "8px",
             }}
           >
             <TextField
@@ -145,42 +157,81 @@ const DriverDetails = () => {
         </DialogActions>
       </Dialog>
 
-      {/* Display list of added drivers */}
       <Box
         mt="40px"
         p="20px"
         sx={{
           backgroundColor: colors.primary[400],
-          borderRadius: "8px",
+          borderRadius: "12px",
+          boxShadow: "0px 4px 20px rgba(0,0,0,0.1)",
         }}
       >
-        <Grid container spacing={2}>
+        <Grid container spacing={3}>
           {drivers.length > 0 ? (
             drivers.map((driver, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <Card
                   sx={{
-                    backgroundColor: colors.primary[500],
-                    borderRadius: "4px",
-                    border: `1px solid ${colors.greenAccent[300]}`,
+                    background: `linear-gradient(135deg, ${colors.primary[500]}, ${colors.primary[600]})`,
+                    borderRadius: "16px",
+                    boxShadow: "0px 4px 20px rgba(0,0,0,0.1)",
+                    transition: "transform 0.3s",
+                    "&:hover": {
+                      transform: "translateY(-5px)",
+                    },
                   }}
                 >
                   <CardContent>
-                    <Box display="flex" flexDirection="column" alignItems="center">
-                      <Avatar src={driver.image} alt={driver.name} sx={{ width: 100, height: 100, mb: 2 }} />
-                      <Typography variant="h5" color={colors.greenAccent[300]}>
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      alignItems="center"
+                    >
+                      <Avatar
+                        src={driver.image}
+                        alt={driver.name}
+                        sx={{ width: 100, height: 100, mb: 2 }}
+                      />
+                      <Typography
+                        variant="h5"
+                        sx={{
+                          color: colors.greenAccent[300],
+                          fontWeight: "bold",
+                          fontFamily: "'Roboto Slab', serif",
+                        }}
+                      >
                         {driver.name}
                       </Typography>
-                      <Typography variant="body1" color={colors.greenAccent[200]}>Phone: {driver.phone}</Typography>
-                      <Typography variant="body1" color={colors.greenAccent[200]}>Email: {driver.email}</Typography>
-                      <Typography variant="body1" color={colors.greenAccent[200]}>License: {driver.license}</Typography>
-                      <Rating
-                        name={`rating-${index}`}
-                        value={driver.rating}
-                        readOnly
-                        precision={0.5}
-                        sx={{ mt: 1 }}
-                      />
+                      <Typography
+                        variant="body1"
+                        sx={{ color: colors.greenAccent[200], mt: 1 }}
+                      >
+                        Phone: {driver.phone}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        sx={{ color: colors.greenAccent[200] }}
+                      >
+                        Email: {driver.email}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        sx={{ color: colors.greenAccent[200] }}
+                      >
+                        License: {driver.license}
+                      </Typography>
+                      <Box display="flex" alignItems="center" mt={2}>
+                        <Rating
+                          name={`rating-${index}`}
+                          value={driver.rating}
+                          readOnly
+                          precision={0.5}
+                          sx={{ mr: 1 }}
+                        />
+                        <Typography variant="body2" color={colors.greenAccent[200]}>
+                          ({driver.reviews} reviews)
+                        </Typography>
+                      </Box>
                     </Box>
                   </CardContent>
                 </Card>

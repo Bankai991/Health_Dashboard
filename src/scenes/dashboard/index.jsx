@@ -17,10 +17,10 @@ import AirlineSeatReclineNormalIcon from "@mui/icons-material/AirlineSeatRecline
 // import TrafficIcon from "@mui/icons-material/Traffic";
 import Header from "../../components/Header";
 // import LineChart from "../../components/LineChart";
-import GeographyChart from "../../components/GeographyChart";
-import BarChart from "../../components/BarChart";
+// import GeographyChart from "../../components/GeographyChart";
+// import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
-import ProgressCircle from "../../components/ProgressCircle";
+// import ProgressCircle from "../../components/ProgressCircle";
 import AmbulanceList from "../../components/AmbulanceList";
 
 const Dashboard = () => {
@@ -138,7 +138,6 @@ const Dashboard = () => {
         </Box>
 
         {/* ROW 2 */}
-        {/* ROW 2 */}
         <Box
           gridColumn="span 12"
           gridRow="span 2"
@@ -210,7 +209,7 @@ const Dashboard = () => {
             display="flex"
             justifyContent="space-between"
             alignItems="center"
-            borderBottom={`4px solid ${colors.primary[500]}`}
+            borderBottom={4px solid ${colors.primary[500]}}
             colors={colors.grey[100]}
             p="15px"
           >
@@ -220,11 +219,11 @@ const Dashboard = () => {
           </Box>
           {mockTransactions.map((transaction, i) => (
             <Box
-              key={`${transaction.txId}-${i}`}
+              key={${transaction.txId}-${i}}
               display="flex"
               justifyContent="space-between"
               alignItems="center"
-              borderBottom={`4px solid ${colors.primary[500]}`}
+              borderBottom={4px solid ${colors.primary[500]}}
               p="15px"
             >
               <Box>
@@ -257,59 +256,94 @@ const Dashboard = () => {
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           p="30px"
+          display="flex"
+          flexDirection="column"
+          alignItems="center" // Centers content horizontally
+          justifyContent="center" // Centers content vertically
         >
-          <Typography variant="h5" fontWeight="600">
-            Campaign
+          <Typography variant="h3" fontWeight="700">
+            Pink Ambulance
           </Typography>
           <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            mt="25px"
+            component="img"
+            src="/pink-ambu-1.png"
+            alt="Pink Ambulance"
+            sx={{
+              width: "180px",
+              height: "auto",
+              mt: "20px",
+            }}
+          />
+          <Typography
+            variant="h4"
+            color={colors.grey[100]}
+            sx={{ mt: "15px", textAlign: "center" }}
           >
-            <ProgressCircle size="125" />
-            <Typography
-              variant="h5"
-              color={colors.greenAccent[500]}
-              sx={{ mt: "15px" }}
-            >
-              $48,352 revenue generated
-            </Typography>
-            <Typography>Includes extra misc expenditures and costs</Typography>
-          </Box>
+            Women driver for emergency women patient
+          </Typography>
+        </Box>
+
+        <Box
+          gridColumn="span 4"
+          gridRow="span 2"
+          backgroundColor={colors.primary[400]}
+          p="30px"
+          display="flex"
+          flexDirection="column"
+          alignItems="center" // Centers content horizontally
+          justifyContent="center" // Centers content vertically
+        >
+          <Typography variant="h3" fontWeight="700">
+            Bulk Ambulance
+          </Typography>
+          <Box
+            component="img"
+            src="/bulk-ambu.png"
+            alt="Pink Ambulance"
+            sx={{
+              width: "180px",
+              height: "auto",
+              mt: "20px",
+            }}
+          />
+          <Typography
+            variant="h4"
+            color={colors.grey[100]}
+            sx={{ mt: "15px", textAlign: "center" }}
+          >
+            For Emergency Multiple Ambulance Needs
+          </Typography>
         </Box>
         <Box
           gridColumn="span 4"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
+          p="30px"
+          display="flex"
+          flexDirection="column"
+          alignItems="center" // Centers content horizontally
+          justifyContent="center" // Centers content vertically
         >
-          <Typography
-            variant="h5"
-            fontWeight="600"
-            sx={{ padding: "30px 30px 0 30px" }}
-          >
-            Sales Quantity
+          <Typography variant="h3" fontWeight="700">
+            Rent Ambulance
           </Typography>
-          <Box height="250px" mt="-20px">
-            <BarChart isDashboard={true} />
-          </Box>
-        </Box>
-        <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          padding="30px"
-        >
+          <Box
+            component="img"
+            src="/rent-ambu.png"
+            alt="Pink Ambulance"
+            sx={{
+              width: "180px",
+              height: "auto",
+              mt: "20px",
+            }}
+          />
           <Typography
-            variant="h5"
-            fontWeight="600"
-            sx={{ marginBottom: "15px" }}
+            variant="h4"
+            color={colors.grey[100]}
+            sx={{ mt: "15px", textAlign: "center" }}
           >
-            Geography Based Traffic
+            For Events, travel, transfer & more
           </Typography>
-          <Box height="200px">
-            <GeographyChart isDashboard={true} />
-          </Box>
         </Box>
       </Box>
     </Box>
