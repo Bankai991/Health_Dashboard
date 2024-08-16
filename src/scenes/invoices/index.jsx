@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Typography, TextField, Button, useTheme, IconButton, Dialog, DialogTitle, DialogContent, DialogActions, Card, CardContent, Grid } from "@mui/material";
+import { Box, Typography, TextField, Button, useTheme, IconButton, Dialog, DialogTitle, DialogContent, DialogActions, Card, CardContent, Grid, Rating, Avatar } from "@mui/material";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import AddIcon from "@mui/icons-material/Add";
@@ -8,12 +8,14 @@ const DriverDetails = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  // Initialize with 9 default driver details
+  // Initialize with 9 default driver details including images and ratings
   const defaultDrivers = Array.from({ length: 9 }, (_, index) => ({
     name: `Driver ${index + 1}`,
     phone: `123-456-789${index}`,
-    email: `driver${index + 1}@example.com`,      
+    email: `driver${index + 1}@example.com`,
     license: `LIC${index + 1}`,
+    image: `https://via.placeholder.com/100`, // Placeholder image URL
+    rating: Math.floor(Math.random() * 5) + 1 // Random rating between 1 and 5
   }));
 
   // State for form inputs
@@ -21,6 +23,7 @@ const DriverDetails = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [licenseNumber, setLicenseNumber] = useState("");
+  const [driverImage, setDriverImage] = useState("");
 
   // State for added drivers
   const [drivers, setDrivers] = useState(defaultDrivers);
@@ -30,12 +33,14 @@ const DriverDetails = () => {
 
   // Handle form submission
   const handleAddDriver = () => {
-    if (driverName && phoneNumber && email && licenseNumber) {
+    if (driverName && phoneNumber && email && licenseNumber && driverImage) {
       const newDriver = {
         name: driverName,
         phone: phoneNumber,
         email: email,
         license: licenseNumber,
+        image: driverImage,
+        rating: Math.floor(Math.random() * 5) + 1 // Random rating between 1 and 5
       };
       setDrivers([...drivers, newDriver]);
 
@@ -44,6 +49,7 @@ const DriverDetails = () => {
       setPhoneNumber("");
       setEmail("");
       setLicenseNumber("");
+      setDriverImage("");
 
       // Close the modal
       setOpen(false);
@@ -62,7 +68,7 @@ const DriverDetails = () => {
 
   return (
     <Box m="20px">
-      <Header  title="DRIVER DETAILS" subtitle="Manage driver information" />
+      <Header title="DRIVER DETAILS" subtitle="Manage driver information" />
 
       <IconButton
         onClick={handleClickOpen}
@@ -80,7 +86,6 @@ const DriverDetails = () => {
         <AddIcon />
       </IconButton>
 
-      {/* Modal for adding driver */}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add Driver</DialogTitle>
         <DialogContent>
@@ -121,6 +126,13 @@ const DriverDetails = () => {
               value={licenseNumber}
               onChange={(e) => setLicenseNumber(e.target.value)}
             />
+            <TextField
+              label="Image URL"
+              variant="outlined"
+              fullWidth
+              value={driverImage}
+              onChange={(e) => setDriverImage(e.target.value)}
+            />
           </Box>
         </DialogContent>
         <DialogActions>
@@ -154,13 +166,22 @@ const DriverDetails = () => {
                   }}
                 >
                   <CardContent>
-                    <Typography variant="h1" color={colors.greenAccent[300]}>
-                      Driver {index + 1}
-                    </Typography>
-                    <Typography variant="h4" color={colors.greenAccent[200]}>Name: {driver.name}</Typography>
-                    <Typography variant="h4" color={colors.greenAccent[200]}>Phone: {driver.phone}</Typography>
-                    <Typography variant="h4" color={colors.greenAccent[200]}>Email: {driver.email}</Typography>
-                    <Typography variant="h4" color={colors.greenAccent[200]}>License: {driver.license}</Typography>
+                    <Box display="flex" flexDirection="column" alignItems="center">
+                      <Avatar src={driver.image} alt={driver.name} sx={{ width: 100, height: 100, mb: 2 }} />
+                      <Typography variant="h5" color={colors.greenAccent[300]}>
+                        {driver.name}
+                      </Typography>
+                      <Typography variant="body1" color={colors.greenAccent[200]}>Phone: {driver.phone}</Typography>
+                      <Typography variant="body1" color={colors.greenAccent[200]}>Email: {driver.email}</Typography>
+                      <Typography variant="body1" color={colors.greenAccent[200]}>License: {driver.license}</Typography>
+                      <Rating
+                        name={`rating-${index}`}
+                        value={driver.rating}
+                        readOnly
+                        precision={0.5}
+                        sx={{ mt: 1 }}
+                      />
+                    </Box>
                   </CardContent>
                 </Card>
               </Grid>
