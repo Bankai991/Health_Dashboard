@@ -163,11 +163,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-<<<<<<< HEAD
-
-=======
            
->>>>>>> sujith
             <Typography
               variant="h6"
               color={colors.grey[300]}
