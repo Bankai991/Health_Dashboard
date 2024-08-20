@@ -99,56 +99,53 @@ const Dashboard = () => {
 
       {/* DIALOG FOR EMERGENCY BOOKING */}
       <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-  <DialogTitle>Emergency Booking</DialogTitle>
-  <DialogContent>
-    <TextField
-      autoFocus
-      margin="dense"
-      name="name"
-      label="Name"
-      type="text"
-      color="secondary"
-      fullWidth
-      variant="standard"
-      value={formData.name}
-      onChange={handleInputChange}
-    />
-        <TextField
-      margin="dense"
-      name="phone"
-      color="secondary"
-      label="Phone Number"
-      type="tel"
-      fullWidth
-      variant="standard"
-      value={formData.phone}
-      onChange={handleInputChange}
-    />
-    <TextField
-      margin="dense"
-      name="location"
-      color="secondary"
-      label="Location"
-      type="text"
-      fullWidth
-      variant="standard"
-      value={formData.location}
-      onChange={handleInputChange}
-      disabled
-    />
-
-  </DialogContent>
-  <DialogActions>
-  <Button onClick={handleClose} color="secondary">
-    Cancel
-  </Button>
-  <Button onClick={handleSubmit} color="secondary">
-    Submit
-  </Button>
-</DialogActions>
-
-</Dialog>
-
+        <DialogTitle>Emergency Booking</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            name="name"
+            label="Name"
+            type="text"
+            color="secondary"
+            fullWidth
+            variant="standard"
+            value={formData.name}
+            onChange={handleInputChange}
+          />
+          <TextField
+            margin="dense"
+            name="phone"
+            color="secondary"
+            label="Phone Number"
+            type="tel"
+            fullWidth
+            variant="standard"
+            value={formData.phone}
+            onChange={handleInputChange}
+          />
+          <TextField
+            margin="dense"
+            name="location"
+            color="secondary"
+            label="Location"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={formData.location}
+            onChange={handleInputChange}
+            disabled
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={handleSubmit} color="secondary">
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       {/* GRID & CHARTS */}
       <Box
@@ -164,6 +161,7 @@ const Dashboard = () => {
           display="flex"
           alignItems="center"
           justifyContent="center"
+          position="relative"
         >
           <StatBox
             title="12"
@@ -176,6 +174,37 @@ const Dashboard = () => {
               />
             }
           />
+          <Box
+            sx={{
+              position: "absolute",
+              top: "10px",
+              left: "10px", // Changed from right to left
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Box
+              sx={{
+                width: "15px",
+                height: "15px",
+                borderRadius: "50%",
+                backgroundColor: "red",
+                animation: "blinking 1.5s infinite",
+                "@keyframes blinking": {
+                  "0%": { opacity: 1 },
+                  "50%": { opacity: 0.5 },
+                  "100%": { opacity: 1 },
+                },
+              }}
+            />
+            <Typography
+              variant="body 1"
+              color="red"
+              sx={{ ml: "5px", fontWeight: "bold" }}
+            >
+              LIVE
+            </Typography>
+          </Box>
         </Box>
         <Box
           gridColumn="span 3"
