@@ -1,19 +1,33 @@
-import { Box, Button, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
+import React, { useState } from "react";
+import { Google, Facebook, Twitter } from "@mui/icons-material"; // Import icons
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
+
+  const [address2, setAddress2] = useState("");
 
   const handleFormSubmit = (values) => {
     console.log(values);
   };
 
   return (
-    <Box m="20px">
-      <Header title="CREATE USER" subtitle="Create a New User Profile" />
+    <Box m="20px" marginLeft="285px" marginTop="85px">
+      <Header title="PRIVATE BOOKING" subtitle="Fill the following details" />
 
       <Formik
         onSubmit={handleFormSubmit}
@@ -27,6 +41,7 @@ const Form = () => {
           handleBlur,
           handleChange,
           handleSubmit,
+          setFieldValue,
         }) => (
           <form onSubmit={handleSubmit}>
             <Box
@@ -63,7 +78,7 @@ const Form = () => {
                 helperText={touched.lastName && errors.lastName}
                 sx={{ gridColumn: "span 2" }}
               />
-              <TextField
+              {/* <TextField
                 fullWidth
                 variant="filled"
                 type="text"
@@ -75,7 +90,7 @@ const Form = () => {
                 error={!!touched.email && !!errors.email}
                 helperText={touched.email && errors.email}
                 sx={{ gridColumn: "span 4" }}
-              />
+              /> */}
               <TextField
                 fullWidth
                 variant="filled"
@@ -102,24 +117,65 @@ const Form = () => {
                 helperText={touched.address1 && errors.address1}
                 sx={{ gridColumn: "span 4" }}
               />
-              <TextField
+              <FormControl
                 fullWidth
                 variant="filled"
-                type="text"
-                label="Address 2"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address2}
-                name="address2"
-                error={!!touched.address2 && !!errors.address2}
-                helperText={touched.address2 && errors.address2}
                 sx={{ gridColumn: "span 4" }}
-              />
+              >
+                <InputLabel>Type of Ambulance</InputLabel>
+                <Select
+                  value={address2}
+                  onChange={(e) => {
+                    setAddress2(e.target.value);
+                    setFieldValue("address2", e.target.value);
+                  }}
+                  name="address2"
+                  label="Address 2"
+                >
+                  <MenuItem value="Option 1">Patient Transfer</MenuItem>
+                  <MenuItem value="Option 2">Patient Transfer - AC</MenuItem>
+                  <MenuItem value="Option 3">Basic Life Support (BLS)</MenuItem>
+                  <MenuItem value="Option 4">
+                    Basic Life Support (BLS) - AC
+                  </MenuItem>
+                  <MenuItem value="Option 5">
+                    Advance Life Support (ALS)
+                  </MenuItem>
+                  <MenuItem value="Option 6">Medical First Responder</MenuItem>
+                  <MenuItem value="Option 7">Dead Body (Small)</MenuItem>
+                  <MenuItem value="Option 8">Dead Body (Medium)</MenuItem>
+                  <MenuItem value="Option 9">Dead Body (Big)</MenuItem>
+                </Select>
+              </FormControl>
             </Box>
-            <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="secondary" variant="contained">
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              mt="20px"
+            >
+              <Button
+                type="submit"
+                color="secondary"
+                variant="contained"
+                sx={{ width: "300px", height: "62px", fontSize: "18px" }}
+              >
                 Create New User
               </Button>
+              <Typography variant="h3" color="textSecondary" mt="20px">
+                OR
+              </Typography>
+              <Box display="flex" justifyContent="center" mt="10px">
+                <IconButton>
+                  <Google sx={{ fontSize: 40, color: "#DB4437" }} />
+                </IconButton>
+                <IconButton>
+                  <Facebook sx={{ fontSize: 40, color: "#4267B2" }} />
+                </IconButton>
+                <IconButton>
+                  <Twitter sx={{ fontSize: 40, color: "#1DA1F2" }} />
+                </IconButton>
+              </Box>
             </Box>
           </form>
         )}
@@ -142,6 +198,7 @@ const checkoutSchema = yup.object().shape({
   address1: yup.string().required("required"),
   address2: yup.string().required("required"),
 });
+
 const initialValues = {
   firstName: "",
   lastName: "",

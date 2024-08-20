@@ -74,8 +74,8 @@ const Dashboard = () => {
   };
 
   return (
-    <Box m="20px">
-      {/* HEADER */}
+    <Box m="20px" marginLeft="285px">
+      
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header
           title="AMBULANCE DASHBOARD"
