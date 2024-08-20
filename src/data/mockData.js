@@ -1,4 +1,19 @@
 import { tokens } from "../theme";
+// mockData.js
+export const mockDataBookings = [
+  { id: 1, customerName: "John Doe", service: "BLS", bookingDate: new Date(), status: "Confirmed", phone: "123-456-7890", email: "john.doe@example.com" },
+  { id: 2, customerName: "Jane Smith", service: "Patient Transfer", bookingDate: new Date(), status: "Pending", phone: "987-654-3210", email: "jane.smith@example.com" },
+  { id: 3, customerName: "Robert Brown", service: "ALS", bookingDate: new Date(), status: "Cancelled", phone: "555-678-1234", email: "robert.brown@example.com" },
+  { id: 4, customerName: "Emily Clark", service: "Neonatal Transport", bookingDate: new Date(), status: "Confirmed", phone: "333-222-1111", email: "emily.clark@example.com" },
+  { id: 5, customerName: "Michael Johnson", service: "Bariatric Transport", bookingDate: new Date(), status: "In Progress", phone: "444-555-6666", email: "michael.johnson@example.com" },
+  { id: 6, customerName: "Laura White", service: "Critical Care", bookingDate: new Date(), status: "Confirmed", phone: "789-123-4567", email: "laura.white@example.com" },
+  { id: 7, customerName: "Daniel Harris", service: "Air Ambulance", bookingDate: new Date(), status: "Pending", phone: "654-321-0987", email: "daniel.harris@example.com" },
+  { id: 8, customerName: "Sophia Lewis", service: "Event Standby", bookingDate: new Date(), status: "Confirmed", phone: "321-654-9870", email: "sophia.lewis@example.com" },
+  { id: 9, customerName: "Chris Walker", service: "Wheelchair Transport", bookingDate: new Date(), status: "Cancelled", phone: "123-987-6543", email: "chris.walker@example.com" },
+  { id: 10, customerName: "Olivia Martinez", service: "Pediatric Transport", bookingDate: new Date(), status: "In Progress", phone: "555-444-3333", email: "olivia.martinez@example.com" }
+];
+
+
 
 export const mockDataTeam = [
   {
