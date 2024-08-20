@@ -66,6 +66,17 @@ const Team = () => {
         );
       },
     },
+    // New "Pricing" column
+    {
+      field: "pricing",
+      headerName: "Pricing",
+      flex: 1,
+      renderCell: ({ row: { pricing } }) => (
+        <Typography color={colors.grey[100]}>
+          {pricing} USD
+        </Typography>
+      ),
+    },
   ];
 
   return (

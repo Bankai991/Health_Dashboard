@@ -63,11 +63,11 @@ const Sidebar = () => {
       }}
     >
       <ProSidebar collapsed={isCollapsed}>
-        <Menu iconShape="square">
+        <Menu iconShape="square">  
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
-            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}  
             style={{
               margin: "10px 0 20px 0",
               color: colors.grey[100],
@@ -92,7 +92,7 @@ const Sidebar = () => {
 
           {!isCollapsed && (
             <Box mb="25px">
-              <Box display="flex" justifyContent="center" alignItems="center">
+              <Box display="flex" justifyContent="center" alignItems="center">               
                 <img
                   alt="profile-user"
                   width="100px"
@@ -123,13 +123,25 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
 
-            <Typography
+           {/* <Typography
               variant="h6"
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
               Data
             </Typography>
+            */}
+
+
+            <Item
+              title="Driver Details"
+              to="/invoices"
+              icon={<ReceiptOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+
             <Item
               title="Driver Details"
               to="/invoices"
@@ -151,7 +163,11 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+<<<<<<< HEAD
 
+=======
+           
+>>>>>>> sujith
             <Typography
               variant="h6"
               color={colors.grey[300]}
