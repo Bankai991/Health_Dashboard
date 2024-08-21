@@ -18,6 +18,10 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import PersonIcon from "@mui/icons-material/Person";
 import ListAltIcon from '@mui/icons-material/ListAlt';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import ListIcon from '@mui/icons-material/List';
+import DiscountIcon from '@mui/icons-material/Discount';
 
 // Sidebar Item Component
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -193,6 +197,34 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
               title="Lab Billing"
               to="/lab_billing"
               icon={<PeopleOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Lab Notification"
+              to="/lab_notification"
+              icon={<NotificationsNoneIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Lab Prescription"
+              to="/lab_prescription"
+              icon={<ReceiptLongIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Lab Report"
+              to="/lab_report"
+              icon={<ListIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Lab Packages & Offers"
+              to="/lab_package"
+              icon={<DiscountIcon />}
               selected={selected}
               setSelected={setSelected}
             />

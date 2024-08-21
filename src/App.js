@@ -18,6 +18,10 @@ import Calendar from "./scenes/calendar/calendar";
 import LaboratoryDashboard from './scenes/lab_services';
 import Lab_Booking from './scenes/lab_booking';
 import Lab_Billing from './scenes/lab_billing';
+import Lab_Notification from './scenes/lab_notification';
+import Lab_Report from './scenes/lab_report';
+import Lab_Prescription from './scenes/lab_prescription';
+import Lab_Package from './scenes/lab_package';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -46,6 +50,10 @@ function App() {
               <Route path="/lab_services" element={<LaboratoryDashboard />} />
               <Route path="/lab_booking" element={<Lab_Booking />} />
               <Route path="/lab_billing" element={<Lab_Billing />} />
+              <Route path="/lab_notification" element={<Lab_Notification />} />
+              <Route path="/lab_report" element={<Lab_Report />} />
+              <Route path="/lab_prescription" element={<Lab_Prescription />} />
+              <Route path="/lab_package" element={<Lab_Package />} />
             </Routes>
           </main>
         </div>
