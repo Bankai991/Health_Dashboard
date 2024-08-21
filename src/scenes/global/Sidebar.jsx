@@ -159,8 +159,6 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
               selected={selected}
               setSelected={setSelected}
             />
-           
-            
             <Item
               title="Private Booking"
               to="/form"
@@ -168,6 +166,7 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
               selected={selected}
               setSelected={setSelected}
             />
+            
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -176,16 +175,9 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
               Laboratory
             </Typography>
             <Item
-              title="Calendar"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="FAQ Page"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
+              title="Lab Details & Services"
+              to="/lab_services"
+              icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
