@@ -12,13 +12,13 @@ const labs = [
       { name: "Blood Tests", 
         price: "$50",
         time: "30 mins",
-        image: "path_to_image/blood_test.jpg",
+        image: "../../assets/laboratory_pics/blood-test.jpg",
         description: "Comprehensive blood testing services."
       },
       { name: "Urine Tests",
         price: "$30",
         time: "20 mins",
-        image: "path_to_image/urine_test.jpg",
+        image: "../../assets/laboratory_pics/urine_test.jpg",
         description: "Urinalysis for various conditions."
       },
       { name: "X-rays",
@@ -43,21 +43,21 @@ const labs = [
         name: "MRI", 
         price: "$500", 
         time: "1 hour",
-        image: "path_to_image/mri.jpg",
+        image: "../../assets/laboratory_pics/MRI_test.jpg",
         description: "Magnetic Resonance Imaging."
       },
       { 
         name: "CT Scans", 
         price: "$400", 
         time: "45 mins",
-        image: "path_to_image/ct_scan.jpg",
+        image: "../../assets/laboratory_pics/CT-Scan.jpg",
         description: "Computed Tomography scans."
       },
       { 
         name: "Ultrasound", 
         price: "$200", 
         time: "30 mins",
-        image: "path_to_image/ultrasound.jpg",
+        image: "../../assets/laboratory_pics/ultrasound.jpg",
         description: "High-resolution ultrasound imaging."
       }
     ],
@@ -76,7 +76,7 @@ const labs = [
         name: "Cardiac MRI", 
         price: "$600", 
         time: "1.5 hours",
-        image: "path_to_image/cardiac_mri.jpg",
+        image: "../../assets/laboratory_pics/cardiac_mri.jpg",
         description: "Specialized imaging for cardiac conditions."
       },
       { 
@@ -216,14 +216,14 @@ const labs1 = [
         name: "CT Scans", 
         price: "$400", 
         time: "45 mins",
-        image: "path_to_image/ct_scan.jpg",
+        image: "../../assets/laboratory_pics/CT-Scan.jpg",
         description: "Computed Tomography scans."
       },
       { 
         name: "Ultrasound", 
         price: "$200", 
         time: "30 mins",
-        image: "path_to_image/ultrasound.jpg",
+        image: "../../assets/laboratory_pics/ultrasound.jpg",
         description: "High-resolution ultrasound imaging.",
         rating: '4.8',
       }
@@ -314,7 +314,7 @@ const LabListingPage = () => {
       <div style={styles.labContainer}>
         {/* Left Side: Lab List */}
         <div style={styles.labList}>
-          {filteredLabs.map((lab) => (
+          {filteredLabs.length > 0 ? filteredLabs.map((lab) => (
             <div
               key={lab.id}
               style={{
@@ -328,7 +328,9 @@ const LabListingPage = () => {
               <p style={styles.lanameb}>{lab.description}</p>
               {/* <p style={styles.labRating}>⭐ {lab.rating}/5</p> */}
             </div>
-          ))}
+          )) : (
+            <p style={styles.nolabsFound}>No labs found matching your criteria.</p>
+          )}
         </div>
 
         
@@ -338,7 +340,6 @@ const LabListingPage = () => {
           <div>
             {selectedLab ? (
               <>
-
                 <div style={styles.heading}>
                   <h2 style={styles.servicesHeader}>
                     Services Offered by {selectedLab.name}
@@ -401,7 +402,7 @@ const styles = {
     flexDirection: 'column',
   },
   header: {
-    textAlign: 'center',
+    textAlign: 'Left',
     marginBottom: '20px',
     fontSize: '2em',
     color: '#ffffff',
@@ -625,6 +626,11 @@ const styles = {
     transform: 'scale(1.05)',
     boxShadow: '0 6px 12px rgba(0,0,0,0.2)',
     borderColor: '#007BFF',
+  },
+  noLabsFound: {
+    textAlign: 'center',
+    fontSize: '1.2em',
+    color: '#fff',
   },
   
 };
