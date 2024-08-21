@@ -177,7 +177,14 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
             <Item
               title="Lab Details & Services"
               to="/lab_services"
-              icon={<ContactsOutlinedIcon />}
+              icon={<HomeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Lab Details & Services"
+              to="/lab_services"
+              icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

@@ -25,7 +25,7 @@ const labs = [
       { name: "X-rays",
         price: "$100",
         time: "15 mins",
-        image: "path_to_image/xray.jpg",
+        image: "../../assets/laboratory_pics/x-rays.jpg",
         description: "Digital X-ray imaging."
       }
     ],
@@ -84,7 +84,7 @@ const labs = [
         name: "Blood Glucose Test", 
         price: "$25", 
         time: "10 mins",
-        image: "path_to_image/blood_glucose.jpg",
+        image: "../../assets/laboratory_pics/Blood Glucose Test.jpg",
         description: "Glucose level testing."
       }
     ],
@@ -158,14 +158,14 @@ const labs1 = [
         name: "Thyroid Panel", 
         price: "$70", 
         time: "25 mins",
-        image: "path_to_image/thyroid_panel.jpg",
+        image: "../../assets/laboratory_pics/Thyroid Panel.jpg",
         description: "Comprehensive thyroid function testing."
       },
       { 
         name: "Liver Function Test", 
         price: "$65", 
         time: "20 mins",
-        image: "path_to_image/liver_function.jpg",
+        image: "../../assets/laboratory_pics/Liver Function Test.jpg",
         description: "Liver enzyme testing."
       }
     ],
@@ -184,14 +184,14 @@ const labs1 = [
         name: "CBC Test", 
         price: "$40", 
         time: "15 mins",
-        image: "path_to_image/cbc_test.jpg",
+        image: "../../assets/laboratory_pics/CBC Test.jpg",
         description: "Complete Blood Count test."
       },
       { 
         name: "Kidney Function Test", 
         price: "$80", 
         time: "30 mins",
-        image: "path_to_image/kidney_function.jpg",
+        image: "../../assets/laboratory_pics/Kidney-function-test.jpg",
         description: "Kidney function analysis."
       }
     ],
@@ -368,7 +368,6 @@ const LabListingPage = () => {
         </div>
       </div>
       <div style={styles.dummyContainer}>
-        {/* Left Side: Lab List */}
         <div style={styles.labList1}>
           {filteredLabs1.map((lab1) => (
             <div
@@ -410,16 +409,20 @@ const styles = {
     gap: '20px',
     overflow: 'hidden', // Prevents overflow
     justifyContent: 'space-between',
-    height:'55vh',
+    height:'62vh',
   },
   labList: { // Reduced width to minimize the gap
+    backgroundColor:'#1F2A40',
     width: '30%',
     display: 'flex',
     flexDirection: 'column',
-    gap: '15px', // Reduced gap between cards
+    gap: '20px', // Reduced gap between cards
     overflowY: 'auto',
     padding: '15px',
     justifyContent: 'center',
+    alignItems:'center',
+    borderRadius: '10px',
+    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
   },
   servicesContainer: {
     display: 'flex', // Changed to row to display horizontally
@@ -441,6 +444,7 @@ const styles = {
     textAlign: 'center',
     boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
     transition: 'transform 0.3s, box-shadow 0.3s',
+    justifyContent:'center',
   },
   selectedLabCard: {
     transform: 'scale(1.05)',
@@ -471,7 +475,7 @@ const styles = {
 
   },
   serviceBox: {
-    width:'50%',
+    width:'30%',
     padding: '15px',
     border: '1px solid #ccc',
     borderRadius: '10px',
@@ -552,6 +556,7 @@ const styles = {
     border: '1px solid #ccc',
   },
   rightContainer: {
+    backgroundColor:'#1F2A40',
     width:'70%',
     display: 'flex',
     flexDirection: 'column',
@@ -560,6 +565,7 @@ const styles = {
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0,0,0,0.1)', // Ensure it fits the screen height
     overflowY: 'auto', // Enable scroll if needed
+    justifyContent: 'center',
   },
   
   searchBarContainer: {
@@ -585,10 +591,13 @@ const styles = {
     borderRadius: '10px',
   },
   dummyContainer: {
+    backgroundColor:'#1F2A40',
     display: 'flex',
     flexDirection: 'row',
     gap: '20px',
     marginTop: '20px',
+    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+    borderRadius: '10px',
     
   },
   labList1: { 
