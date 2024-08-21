@@ -209,7 +209,7 @@ const labs1 = [
         name: "MRI", 
         price: "$500", 
         time: "1 hour",
-        image: "path_to_image/mri.jpg",
+        image: "../../assets/laboratory_pics/MRI_test.jpg",
         description: "Magnetic Resonance Imaging."
       },
       { 
