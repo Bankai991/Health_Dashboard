@@ -1,4 +1,3 @@
-import { border, height } from '@mui/system';
 import React, { useState } from 'react';
 
 // Sample data (unchanged)
@@ -225,11 +224,12 @@ const labs1 = [
         price: "$200", 
         time: "30 mins",
         image: "path_to_image/ultrasound.jpg",
-        description: "High-resolution ultrasound imaging."
+        description: "High-resolution ultrasound imaging.",
+        rating: '4.8',
       }
     ],
     hours: "Mon-Sat: 7 AM - 5 PM",
-    rating: 4.8,
+    
     image: "path_to_image/xyz_labs.jpg"
   }
 ];
@@ -323,9 +323,10 @@ const LabListingPage = () => {
               }}
               onClick={() => setSelectedLab(lab)}
             >
-              <img src={lab.image} alt={lab.name} style={styles.labImage} />
+              {/* <img src={lab.image} alt={lab.name} style={styles.labImage} /> */}
               <h2 style={styles.labName}>{lab.name}</h2>
-              <p style={styles.labRating}>⭐ {lab.rating}/5</p>
+              <p style={styles.lanameb}>{lab.description}</p>
+              {/* <p style={styles.labRating}>⭐ {lab.rating}/5</p> */}
             </div>
           ))}
         </div>
@@ -355,6 +356,7 @@ const LabListingPage = () => {
                       <p style={styles.serviceDescription}>{service.description}</p>
                       <p style={styles.servicePrice}>Price: <strong>{service.price}</strong></p>
                       <p style={styles.serviceTime}>Time: <strong>{service.time}</strong></p>
+                      <p style={styles.labRating}>⭐ {service.rating}/5</p>
                     </div>
                   ))}
                 </div>
@@ -378,9 +380,10 @@ const LabListingPage = () => {
               }}
               onClick={() => setSelectedLab(lab1)}
             >
-              <img src={lab1.image} alt={lab1.name} style={styles.labImage} />
+              {/* <img src={lab1.image} alt={lab1.name} style={styles.labImage} /> */}
               <h2 style={styles.labName}>{lab1.name}</h2>
-              <p style={styles.labRating}>⭐ {lab1.rating}/5</p>
+              <p style={styles.lanameb}>{lab1.description}</p>
+              {/* <p style={styles.labRating}>⭐ {lab1.rating}/5</p> */}
             </div>
           ))}
         </div>

@@ -17,6 +17,7 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import PersonIcon from "@mui/icons-material/Person";
+import ListAltIcon from '@mui/icons-material/ListAlt';
 
 // Sidebar Item Component
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -182,9 +183,16 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
               setSelected={setSelected}
             />
             <Item
-              title="Lab Details & Services"
-              to="/lab_services"
-              icon={<HomeOutlinedIcon />}
+              title="Lab Booking"
+              to="/lab_booking"
+              icon={<ListAltIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Lab Billing"
+              to="/lab_billing"
+              icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
