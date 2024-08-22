@@ -187,7 +187,7 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
               setSelected={setSelected}
             />
             <Item
-              title="Lab Booking"
+              title="Lab Booking & Billing"
               to="/lab_booking"
               icon={<ListAltIcon />}
               selected={selected}
