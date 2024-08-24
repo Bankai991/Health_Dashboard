@@ -15,6 +15,9 @@ import Geography from "./scenes/geography";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import Calendar from "./scenes/calendar/calendar";
+import LaboratoryDashboard from './scenes/lab_services';
+import Lab_Booking from './scenes/lab_booking';
+import Lab_Billing from './scenes/lab_billing';
 
 import DonorListPage from "./scenes/donors/DonorListPage";
 
@@ -42,8 +45,9 @@ function App() {
               <Route path="/faq" element={<FAQ />} />
               <Route path="/calendar" element={<Calendar />} />
               <Route path="/geography" element={<Geography />} />
-          
-              <Route path="/donors/:group" element={<DonorListPage />} />
+              <Route path="/lab_services" element={<LaboratoryDashboard />} />
+              <Route path="/lab_booking" element={<Lab_Booking />} />
+              <Route path="/lab_billing" element={<Lab_Billing />} />
             </Routes>
           </main>
         </div>

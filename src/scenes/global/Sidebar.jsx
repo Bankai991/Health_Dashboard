@@ -16,6 +16,8 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import PersonIcon from "@mui/icons-material/Person";
+import ListAltIcon from '@mui/icons-material/ListAlt';
 
 // Sidebar Item Component
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -158,8 +160,6 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
               selected={selected}
               setSelected={setSelected}
             />
-           
-            
             <Item
               title="Private Booking"
               to="/form"
@@ -167,6 +167,7 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
               selected={selected}
               setSelected={setSelected}
             />
+            
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -175,16 +176,23 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
               Laboratory
             </Typography>
             <Item
-              title="Calendar"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
+              title="Lab Details & Services"
+              to="/lab_services"
+              icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="FAQ Page"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
+              title="Lab Booking"
+              to="/lab_booking"
+              icon={<ListAltIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Lab Billing"
+              to="/lab_billing"
+              icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
