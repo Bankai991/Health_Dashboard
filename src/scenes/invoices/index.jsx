@@ -81,7 +81,7 @@ const DriverDetails = () => {
       <Header title="DRIVER DETAILS" subtitle="Manage driver information" />
 
       {/* Add Driver Button */}
-      <Box mb="20px" display="flex" justifyContent="flex-end" marginTop="1px">
+      <Box mb="20px" display="flex" justifyContent="flex-end" marginTop="10px">
         <Button
           onClick={handleClickOpen}
           sx={{
@@ -158,8 +158,9 @@ const DriverDetails = () => {
       </Dialog>
 
       <Box
-        mt="20px" // Adjusted top margin
-        p="20px"
+        mt="5px" // Adjusted top margin
+        p="15px"
+        
         sx={{
           backgroundColor: colors.primary[400],
           borderRadius: "12px",
