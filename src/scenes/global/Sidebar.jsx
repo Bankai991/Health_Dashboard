@@ -194,13 +194,6 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
               setSelected={setSelected}
             />
             <Item
-              title="Lab Billing"
-              to="/lab_billing"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
               title="Lab Notification"
               to="/lab_notification"
               icon={<NotificationsNoneIcon />}
