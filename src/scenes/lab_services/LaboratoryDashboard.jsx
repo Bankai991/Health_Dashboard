@@ -1,4 +1,18 @@
 import React, { useState } from 'react';
+import { tokens } from "../../theme";
+import {
+  Box,
+  Button,
+  Typography,
+  useTheme,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from "@mui/material";
+
+
 
 // Sample data (unchanged)
 const labs = [
@@ -235,6 +249,8 @@ const labs1 = [
 ];
 
 const LabListingPage = () => {
+  const theme = useTheme();
+  const colors = theme.palette;
   const [selectedLab, setSelectedLab] = useState(null);
   const [selectedLabsForComparison, setSelectedLabsForComparison] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -313,7 +329,7 @@ const LabListingPage = () => {
 
       <div style={styles.labContainer}>
         {/* Left Side: Lab List */}
-        <div style={styles.labList}>
+        <div style={{ ...styles.labList, backgroundColor: colors.primary[600] }}>
           {filteredLabs.length > 0 ? filteredLabs.map((lab) => (
             <div
               key={lab.id}
@@ -325,7 +341,7 @@ const LabListingPage = () => {
             >
               {/* <img src={lab.image} alt={lab.name} style={styles.labImage} /> */}
               <h2 style={styles.labName}>{lab.name}</h2>
-              <p style={styles.lanameb}>{lab.description}</p>
+              <p style={styles.labame}>{lab.description}</p>
               {/* <p style={styles.labRating}>⭐ {lab.rating}/5</p> */}
             </div>
           )) : (
@@ -336,7 +352,7 @@ const LabListingPage = () => {
         
 
         {/* Right Side: Services Offered by Selected Lab */}
-        <div style={styles.rightContainer}>
+        <div style={{ ...styles.rightContainer, backgroundColor: colors.primary }}>
           <div>
             {selectedLab ? (
               <>
@@ -393,7 +409,7 @@ const LabListingPage = () => {
   );
 };
 
-const styles = {
+const styles = { 
   container: {
     marginLeft:'285px',
     padding: '20px',
@@ -416,7 +432,6 @@ const styles = {
     height:'62vh',
   },
   labList: { // Reduced width to minimize the gap
-    backgroundColor:'#1F2A40',
     width: '30%',
     display: 'flex',
     flexDirection: 'column',
@@ -560,7 +575,6 @@ const styles = {
     border: '1px solid #ccc',
   },
   rightContainer: {
-    backgroundColor:'#1F2A40',
     width:'70%',
     display: 'flex',
     flexDirection: 'column',

@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -6,32 +7,33 @@ import {
   Select,
   InputLabel,
   FormControl,
-  IconButton,
   Typography,
+  Grid,
+  Card,
+  CardContent,
+  Divider,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
-import React, { useState } from "react";
-import { Google, Facebook, Twitter } from "@mui/icons-material"; // Import icons
+import { tokens } from "../../theme";
+import { useNavigate } from 'react-router-dom';
+import {Link} from 'react-router-dom'
 
-const Lab_Booking = () => {
+// Booking Form
+const BookingForm = ({ onFormSubmit, formData }) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-
-  const [address2, setAddress2] = useState("");
-
-  const handleFormSubmit = (values) => {
-    console.log(values);
-  };
+  const [testType, setTestType] = useState("");
 
   return (
-    <Box m="20px" marginLeft="285px" marginTop="85px">
+    <Box m="20px" marginLeft="285px">
       <Header title="Book for the Lab Test" subtitle="Fill the following details" />
 
       <Formik
-        onSubmit={handleFormSubmit}
-        initialValues={initialValues}
+        onSubmit={onFormSubmit}
+        initialValues={formData}
         validationSchema={checkoutSchema}
       >
         {({
@@ -78,19 +80,6 @@ const Lab_Booking = () => {
                 helperText={touched.lastName && errors.lastName}
                 sx={{ gridColumn: "span 2" }}
               />
-              {/* <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Email"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.email}
-                name="email"
-                error={!!touched.email && !!errors.email}
-                helperText={touched.email && errors.email}
-                sx={{ gridColumn: "span 4" }}
-              /> */}
               <TextField
                 fullWidth
                 variant="filled"
@@ -124,26 +113,17 @@ const Lab_Booking = () => {
               >
                 <InputLabel>Type of Test</InputLabel>
                 <Select
-                  value={address2}
+                  value={testType}
                   onChange={(e) => {
-                    setAddress2(e.target.value);
+                    setTestType(e.target.value);
                     setFieldValue("address2", e.target.value);
                   }}
                   name="address2"
-                  label="test"
+                  label="Test"
                 >
-                  <MenuItem value="Option 1">Blood Test</MenuItem>
-                  <MenuItem value="Option 2">Urine Tests</MenuItem>
-                  <MenuItem value="Option 3">X-rays</MenuItem>
-                  <MenuItem value="Option 4">MRI</MenuItem>
-                  <MenuItem value="Option 5">CT Scans</MenuItem>
-                  <MenuItem value="Option 6">Ultasound</MenuItem>
-                  <MenuItem value="Option 7">Cardiac MRI</MenuItem>
-                  <MenuItem value="Option 8">Blood Glucose Test</MenuItem>
-                  <MenuItem value="Option 9">Thyroid Panel</MenuItem>
-                  <MenuItem value="Option 9">Liver Function Test</MenuItem>
-                  <MenuItem value="Option 10">CBC Test</MenuItem>
-                  <MenuItem value="Option 11">Kidney Function Test</MenuItem>
+                  <MenuItem value="Blood Test">Blood Test</MenuItem>
+                  <MenuItem value="X-rays">X-rays</MenuItem>
+                  {/* Add other options here */}
                 </Select>
               </FormControl>
             </Box>
@@ -161,20 +141,6 @@ const Lab_Booking = () => {
               >
                 Create New User
               </Button>
-              <Typography variant="h3" color="textSecondary" mt="20px">
-                OR
-              </Typography>
-              <Box display="flex" justifyContent="center" mt="10px">
-                <IconButton>
-                  <Google sx={{ fontSize: 40, color: "#DB4437" }} />
-                </IconButton>
-                <IconButton>
-                  <Facebook sx={{ fontSize: 40, color: "#4267B2" }} />
-                </IconButton>
-                <IconButton>
-                  <Twitter sx={{ fontSize: 40, color: "#1DA1F2" }} />
-                </IconButton>
-              </Box>
             </Box>
           </form>
         )}
@@ -183,13 +149,203 @@ const Lab_Booking = () => {
   );
 };
 
+// Billing Component
+const Billing = ({ selectedItems, handleSelect, handleClear, formData }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
+
+  // Calculate total price
+  const totalPrice = selectedItems.reduce((sum, item) => sum + item.price, 0);
+
+  const serviceData = [
+    { service: "Blood Test", price: 200 },
+    { service: "Urine Tests", price: 200 },
+    { service: "X-rays", price: 350 },
+    { service: "MRI", price: 3000 },
+    { service: "CT Scans", price: 8000 },
+    { service: "Ultrasound", price: 2500 },
+    { service: "Cardiac MRI", price: 1500 },
+    { service: "Blood Glucose Test", price: 400 },
+    { service: "Thyroid Panel", price: 350 },
+    { service: "Liver Function Test", price: 450 },
+    { service: "CBC Test", price: 400 },
+    { service: "Kidney Function Test", price: 550 },
+    // Add other services here
+  ];
+
+  return (
+    <Box mb={4} p={2} minHeight='100vh' borderRadius="8px" sx={{ backgroundColor: colors.primary[400] }}>
+      <Typography variant="h1" color={colors.grey[100]} gutterBottom>
+        Booking Details
+      </Typography>
+      <Box mb={2}>
+        <Typography variant="h3" color={colors.grey[100]}>
+          Name: {formData.firstName} {formData.lastName}
+        </Typography>
+        <Typography variant="h3" color={colors.grey[100]}>
+          Contact: {formData.contact}
+        </Typography>
+        <Typography variant="h3" color={colors.grey[100]}>
+          Address: {formData.address1}
+        </Typography>
+        <Typography variant="h3" color={colors.grey[100]}>
+          Test Type: {formData.address2}
+        </Typography>
+      </Box>
+      <Divider />
+      <Typography variant="h4" color={colors.grey[100]} gutterBottom marginTop={'50px'}>
+        Selected Items:
+      </Typography>
+      {selectedItems.length > 0 ? (
+        <Box>
+          <ul>
+            {selectedItems.map((item, index) => (
+              <li key={index}>
+                <Typography variant="body1" color={colors.grey[100]} sx={{ fontSize: "18px" }}>
+                  {item.service} - ₹{item.price.toLocaleString()}
+                </Typography>
+              </li>
+            ))}
+          </ul>
+          <Typography variant="h4" mt={2} color={colors.greenAccent[400]}>
+            Total: ₹{totalPrice.toLocaleString()}
+          </Typography>
+        </Box>
+      ) : (
+        <Typography color={colors.grey[100]} sx={{ fontSize: "18px" }}>
+          No items selected yet.
+        </Typography>
+      )}
+
+      {/* Buttons */}
+      <Box mt={3} display="flex" justifyContent="space-between">
+        <Button variant="contained" color="secondary" onClick={handleClear} sx={{ fontSize: "16px" }}>
+          Clear Selection
+        </Button>
+        <Button variant="contained" color="success" sx={{ fontSize: "16px" }}>
+          Book Now
+        </Button>
+      </Box>
+    </Box>
+  );
+};
+
+// Combined Component
+const BookingAndBilling = () => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const navigate = useNavigate();
+
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    contact: "",
+    address1: "",
+    address2: "",
+  });
+
+  // Function to handle selection
+  const handleSelect = (item) => {
+    setSelectedItems((prevSelectedItems) => {
+      if (prevSelectedItems.includes(item)) {
+        return prevSelectedItems.filter((selected) => selected !== item);
+      }
+      return [...prevSelectedItems, item];
+    });
+  };
+
+  // Function to clear selections
+  const handleClear = () => {
+    setSelectedItems([]);
+  };
+
+  const handleFormSubmit = (values) => {
+    setFormData(values);
+    console.log(values);
+    // Here you can handle form submission logic such as saving to a database
+  };
+  const handleBookNow = () => {
+    navigate('/summary', { state: { formData, selectedItems } });
+  };
+
+  const serviceData = [
+    { service: "Blood Test", price: 200 },
+    { service: "Urine Tests", price: 200 },
+    { service: "X-rays", price: 350 },
+    { service: "MRI", price: 3000 },
+    { service: "CT Scans", price: 8000 },
+    { service: "Ultrasound", price: 2500 },
+    { service: "Cardiac MRI", price: 1500 },
+    { service: "Blood Glucose Test", price: 400 },
+    { service: "Thyroid Panel", price: 350 },
+    { service: "Liver Function Test", price: 450 },
+    { service: "CBC Test", price: 400 },
+    { service: "Kidney Function Test", price: 550 },
+    // Add other services here
+  ];
+
+  return (
+    <Box display="flex" flexDirection="row" justifyContent="space-between">
+      <Box flex={1}>
+        <BookingForm onFormSubmit={handleFormSubmit} formData={formData}/>
+        <Box mt={4} marginLeft='285px' >
+          <Header title="Available Services" subtitle="Choose from the services below" />
+          <Grid container spacing={2}>
+            {serviceData.map((item, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <Card
+                  sx={{
+                    backgroundColor: colors.primary[400],
+                    color: colors.grey[100],
+                    borderRadius: "8px",
+                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                    cursor: "pointer",
+                    border: selectedItems.includes(item) ? `2px solid ${colors.greenAccent[500]}` : "none",
+                  }}
+                  onClick={() => handleSelect(item)}
+                >
+                  <CardContent>
+                    <Typography variant="h5" gutterBottom>
+                      {item.service}
+                    </Typography>
+                    <Typography variant="h4">
+                      ₹{item.price.toLocaleString()} {/* Display price in rupees with commas */}
+                    </Typography>
+                    <Button
+                      variant="contained"
+                      color={selectedItems.includes(item) ? "secondary" : "secondary"}
+                      sx={{ mt: 2, fontSize: "16px" }}
+                    >
+                      {selectedItems.includes(item) ? "Selected" : "Select"}
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      </Box>
+      <Box flex={1} ml={2}>
+        <Billing
+          selectedItems={selectedItems}
+          handleSelect={handleSelect}
+          handleClear={handleClear}
+          formData={formData}
+        />
+      </Box>
+    </Box>
+  );
+};
+
+// Validation Schema
 const phoneRegExp =
-  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
+  /^((\+?[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
 const checkoutSchema = yup.object().shape({
   firstName: yup.string().required("required"),
   lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
   contact: yup
     .string()
     .matches(phoneRegExp, "Phone number is not valid")
@@ -198,13 +354,6 @@ const checkoutSchema = yup.object().shape({
   address2: yup.string().required("required"),
 });
 
-const initialValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  contact: "",
-  address1: "",
-  address2: "",
-};
 
-export default Lab_Booking;
+
+export default BookingAndBilling;
