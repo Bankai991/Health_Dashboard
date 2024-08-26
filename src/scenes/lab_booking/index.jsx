@@ -14,6 +14,8 @@ import {
   Divider,
   useTheme,
   useMediaQuery,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -150,7 +152,7 @@ const BookingForm = ({ onFormSubmit, formData }) => {
 };
 
 // Billing Component
-const Billing = ({ selectedItems, handleSelect, handleClear, formData }) => {
+const Billing = ({ selectedItems, handleSelect, handleClear, formData, handleBookNow }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -223,7 +225,7 @@ const Billing = ({ selectedItems, handleSelect, handleClear, formData }) => {
         <Button variant="contained" color="secondary" onClick={handleClear} sx={{ fontSize: "16px" }}>
           Clear Selection
         </Button>
-        <Button variant="contained" color="success" sx={{ fontSize: "16px" }}>
+        <Button variant="contained" color="success" sx={{ fontSize: "16px" }} onClick={handleBookNow}>
           Book Now
         </Button>
       </Box>
@@ -246,6 +248,10 @@ const BookingAndBilling = () => {
     address2: "",
   });
 
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+
   // Function to handle selection
   const handleSelect = (item) => {
     setSelectedItems((prevSelectedItems) => {
@@ -267,7 +273,26 @@ const BookingAndBilling = () => {
     // Here you can handle form submission logic such as saving to a database
   };
   const handleBookNow = () => {
-    navigate('/summary', { state: { formData, selectedItems } });
+    const missingFields = [];
+    const { firstName, lastName, contact, address1, address2 } = formData;
+    if (!firstName) missingFields.push("First Name");
+    if (!lastName) missingFields.push("Last Name");
+    if (!contact) missingFields.push("Contact Number");
+    if (!address1) missingFields.push("Address");
+    if (!address2) missingFields.push("Type of Test");
+    if (selectedItems.length === 0) missingFields.push("Selected Items");
+
+    if (missingFields.length > 0) {
+      setSnackbarMessage(`Please fill the missing Fields:\n${missingFields.join(", ")}`);
+      setSnackbarSeverity("error");
+    } else {
+      setSnackbarMessage("Booking Done and Report have been generated");
+      setSnackbarSeverity("success");
+    }
+    setSnackbarOpen(true);
+  };
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
   };
 
   const serviceData = [
@@ -333,8 +358,28 @@ const BookingAndBilling = () => {
           handleSelect={handleSelect}
           handleClear={handleClear}
           formData={formData}
+          handleBookNow={handleBookNow}
         />
       </Box>
+      {/* Snackbar Notification */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        message="Booking and report have been generated"
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        sx={{
+          width: "auto",
+          '& .MuiAlert-message': {
+            width: '600px',
+            fontSize: '25px',
+          },
+        }}
+      >
+        <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
