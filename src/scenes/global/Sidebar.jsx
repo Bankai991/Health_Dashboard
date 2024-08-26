@@ -8,7 +8,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-// import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
@@ -17,6 +17,12 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import ListIcon from '@mui/icons-material/List';
+import DiscountIcon from '@mui/icons-material/Discount';
+
 
 // Sidebar Item Component
 const Item = ({ title, to, icon, selected, setSelected }) => {

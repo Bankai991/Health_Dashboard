@@ -3,6 +3,9 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
+import { FormControl, Typography, IconButton } from '@mui/material';
+import { Google, Facebook, Twitter } from '@mui/icons-material';
+
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
