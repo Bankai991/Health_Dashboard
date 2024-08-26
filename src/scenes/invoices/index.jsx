@@ -29,10 +29,9 @@ const DriverDetails = () => {
     phone: `123-456-789${index}`,
     email: `driver${index + 1}@example.com`,
     license: `LIC${index + 1}`,
-    image: `${process.env.PUBLIC_URL}/assets/user.png`,
+    image: `${process.env.PUBLIC_URL}/assets/user.png`, // Use the image from the public directory
     rating: Math.floor(Math.random() * 5) + 1,
     reviews: Math.floor(Math.random() * 100) + 1,
-    available: index % 2 === 0, // Alternate availability for demonstration
   }));
 
   const [driverName, setDriverName] = useState("");
@@ -54,7 +53,6 @@ const DriverDetails = () => {
         image: driverImage,
         rating: Math.floor(Math.random() * 5) + 1,
         reviews: Math.floor(Math.random() * 100) + 1,
-        available: Math.random() > 0.5, // Randomly set availability for demonstration
       };
       setDrivers([...drivers, newDriver]);
 
@@ -80,22 +78,22 @@ const DriverDetails = () => {
     <Box m="20px" marginLeft="285px">
       <Header title="DRIVER DETAILS" subtitle="Manage driver information" />
 
-      {/* Add Driver Button */}
-      <Box mb="20px" display="flex" justifyContent="flex-end" marginTop="10px">
-        <Button
-          onClick={handleClickOpen}
-          sx={{
-            backgroundColor: colors.blueAccent[700],
-            color: "white",
-            "&:hover": {
-              backgroundColor: colors.blueAccent[800],
-            },
-          }}
-          startIcon={<AddIcon />}
-        >
-          Add Driver
-        </Button>
-      </Box>
+      <IconButton
+        onClick={handleClickOpen}
+        sx={{
+          position: "fixed",
+          top: 80,
+          right: 20,
+          backgroundColor: colors.blueAccent[700],
+          color: "white",
+          boxShadow: "0px 4px 20px rgba(0,0,0,0.2)",
+          "&:hover": {
+            backgroundColor: colors.blueAccent[800],
+          },
+        }}
+      >
+        <AddIcon sx={{ fontSize: 28 }} />
+      </IconButton>
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add Driver</DialogTitle>
@@ -151,7 +149,7 @@ const DriverDetails = () => {
           <Button onClick={handleClose} color="secondary">
             Cancel
           </Button>
-          <Button onClick={handleAddDriver} color="secondary">
+          <Button onClick={handleAddDriver} color="primary">
             Add Driver
           </Button>
         </DialogActions>
@@ -177,39 +175,16 @@ const DriverDetails = () => {
                     borderRadius: "16px",
                     boxShadow: "0px 4px 20px rgba(0,0,0,0.1)",
                     transition: "transform 0.3s",
-                    position: "relative",
                     "&:hover": {
                       transform: "translateY(-5px)",
                     },
                   }}
                 >
-                  <CardContent sx={{ position: "relative" }}>
-                    <Button
-                      variant="contained"
-                      sx={{
-                        position: "absolute",
-                        top: 10,
-                        right: 10,
-                        backgroundColor: driver.available
-                          ? colors.greenAccent[500]
-                          : colors.redAccent[500],
-                        "&:hover": {
-                          backgroundColor: driver.available
-                            ? colors.greenAccent[600]
-                            : colors.redAccent[600],
-                        },
-                        fontSize: "0.8rem",
-                        padding: "4px 8px",
-                      }}
-                    >
-                      {driver.available ? "Available" : "Not Available"}
-                    </Button>
-
+                  <CardContent>
                     <Box
                       display="flex"
                       flexDirection="column"
                       alignItems="center"
-                      mt={2}
                     >
                       <Avatar
                         src={driver.image}

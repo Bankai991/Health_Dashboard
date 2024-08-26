@@ -185,8 +185,8 @@ const Dashboard = () => {
           >
             <Box
               sx={{
-                width: "15px",
-                height: "15px",
+                width: "10px",
+                height: "10px",
                 borderRadius: "50%",
                 backgroundColor: "red",
                 animation: "blinking 1.5s infinite",
@@ -198,7 +198,7 @@ const Dashboard = () => {
               }}
             />
             <Typography
-              variant="body 1"
+              variant="body2"
               color="red"
               sx={{ ml: "5px", fontWeight: "bold" }}
             >

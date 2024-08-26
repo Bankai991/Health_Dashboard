@@ -1,33 +1,19 @@
-import {
-  Box,
-  Button,
-  TextField,
-  MenuItem,
-  Select,
-  InputLabel,
-  FormControl,
-  IconButton,
-  Typography,
-} from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
-import React, { useState } from "react";
-import { Google, Facebook, Twitter } from "@mui/icons-material"; // Import icons
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-
-  const [address2, setAddress2] = useState("");
 
   const handleFormSubmit = (values) => {
     console.log(values);
   };
 
   return (
-    <Box m="20px" marginLeft="285px" marginTop="85px">
-      <Header title="PRIVATE BOOKING" subtitle="Fill the following details" />
+    <Box m="20px">
+      <Header title="CREATE USER" subtitle="Create a New User Profile" />
 
       <Formik
         onSubmit={handleFormSubmit}
@@ -41,7 +27,6 @@ const Form = () => {
           handleBlur,
           handleChange,
           handleSubmit,
-          setFieldValue,
         }) => (
           <form onSubmit={handleSubmit}>
             <Box
@@ -121,32 +106,7 @@ const Form = () => {
                 fullWidth
                 variant="filled"
                 sx={{ gridColumn: "span 4" }}
-              >
-                <InputLabel>Type of Ambulance</InputLabel>
-                <Select
-                  value={address2}
-                  onChange={(e) => {
-                    setAddress2(e.target.value);
-                    setFieldValue("address2", e.target.value);
-                  }}
-                  name="address2"
-                  label="Address 2"
-                >
-                  <MenuItem value="Option 1">Patient Transfer</MenuItem>
-                  <MenuItem value="Option 2">Patient Transfer - AC</MenuItem>
-                  <MenuItem value="Option 3">Basic Life Support (BLS)</MenuItem>
-                  <MenuItem value="Option 4">
-                    Basic Life Support (BLS) - AC
-                  </MenuItem>
-                  <MenuItem value="Option 5">
-                    Advance Life Support (ALS)
-                  </MenuItem>
-                  <MenuItem value="Option 6">Medical First Responder</MenuItem>
-                  <MenuItem value="Option 7">Dead Body (Small)</MenuItem>
-                  <MenuItem value="Option 8">Dead Body (Medium)</MenuItem>
-                  <MenuItem value="Option 9">Dead Body (Big)</MenuItem>
-                </Select>
-              </FormControl>
+              />
             </Box>
             <Box
               display="flex"
@@ -196,7 +156,7 @@ const checkoutSchema = yup.object().shape({
     .matches(phoneRegExp, "Phone number is not valid")
     .required("required"),
   address1: yup.string().required("required"),
-  address2: yup.string().required("required"),
+  address2: yup.string().required("required"), // Updated validation for dropdown
 });
 
 const initialValues = {
@@ -205,7 +165,7 @@ const initialValues = {
   email: "",
   contact: "",
   address1: "",
-  address2: "",
+  address2: "", // Ensure initial value is an empty string
 };
 
 export default Form;

@@ -12,33 +12,24 @@ const StatBox = ({ title, subtitle, icon, progress, increase }) => {
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Box display="flex" alignItems="center">
           {React.cloneElement(icon, {
-            sx: { fontSize: "52px", color: colors.greenAccent[600] }, // Double the icon size (26px * 2 = 52px)
+            sx: { fontSize: "52px", color: colors.greenAccent[600] },
           })}
           <Typography
-            variant="h3" // Changed from h4 to h3 to increase size
+            variant="h3"
             fontWeight="bold"
-            sx={{ color: colors.grey[100], ml: "10px" }} // Added margin for spacing
+            sx={{ color: colors.grey[100], ml: "10px" }}
           >
             {title}
           </Typography>
         </Box>
         <Box>
-          <ProgressCircle progress={progress} size="50" />{" "}
-          {/* Increased the size */}
+          <ProgressCircle progress={progress} size="50" label={increase} />{" "}
+          {/* Pass increase as label */}
         </Box>
       </Box>
       <Box display="flex" justifyContent="space-between" mt="2px">
         <Typography variant="h4" sx={{ color: colors.greenAccent[500] }}>
-          {" "}
-          {/* Changed from h5 to h4 to increase size */}
           {subtitle}
-        </Typography>
-        <Typography
-          variant="h4" // Changed from h5 to h4 to increase size
-          fontStyle="italic"
-          sx={{ color: colors.greenAccent[600] }}
-        >
-          {increase}
         </Typography>
       </Box>
     </Box>
