@@ -85,6 +85,32 @@ const BookingForm = ({ onFormSubmit, formData }) => {
               <TextField
                 fullWidth
                 variant="filled"
+                type="number"
+                label="Age"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.age}
+                name="age"
+                error={!!touched.age && !!errors.age}
+                helperText={touched.age && errors.age}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="date"
+                label="Date of Booking"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.dateOfBooking}
+                name="dateOfBooking"
+                error={!!touched.dateOfBooking && !!errors.dateOfBooking}
+                helperText={touched.dateOfBooking && errors.dateOfBooking}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
                 type="text"
                 label="Contact Number"
                 onBlur={handleBlur}
@@ -108,26 +134,6 @@ const BookingForm = ({ onFormSubmit, formData }) => {
                 helperText={touched.address1 && errors.address1}
                 sx={{ gridColumn: "span 4" }}
               />
-              <FormControl
-                fullWidth
-                variant="filled"
-                sx={{ gridColumn: "span 4" }}
-              >
-                <InputLabel>Type of Test</InputLabel>
-                <Select
-                  value={testType}
-                  onChange={(e) => {
-                    setTestType(e.target.value);
-                    setFieldValue("address2", e.target.value);
-                  }}
-                  name="address2"
-                  label="Test"
-                >
-                  <MenuItem value="Blood Test">Blood Test</MenuItem>
-                  <MenuItem value="X-rays">X-rays</MenuItem>
-                  {/* Add other options here */}
-                </Select>
-              </FormControl>
             </Box>
             <Box
               display="flex"
@@ -186,13 +192,15 @@ const Billing = ({ selectedItems, handleSelect, handleClear, formData, handleBoo
           Name: {formData.firstName} {formData.lastName}
         </Typography>
         <Typography variant="h3" color={colors.grey[100]}>
+          Age: {formData.age}
+        </Typography><Typography variant="h3" color={colors.grey[100]}>
+          Date of Booking: {formData.dateOfBooking}
+        </Typography>
+        <Typography variant="h3" color={colors.grey[100]}>
           Contact: {formData.contact}
         </Typography>
         <Typography variant="h3" color={colors.grey[100]}>
           Address: {formData.address1}
-        </Typography>
-        <Typography variant="h3" color={colors.grey[100]}>
-          Test Type: {formData.address2}
         </Typography>
       </Box>
       <Divider />
@@ -243,9 +251,10 @@ const BookingAndBilling = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
+    age:"",
+    dateOfBooking:"",
     contact: "",
     address1: "",
-    address2: "",
   });
 
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -274,12 +283,13 @@ const BookingAndBilling = () => {
   };
   const handleBookNow = () => {
     const missingFields = [];
-    const { firstName, lastName, contact, address1, address2 } = formData;
+    const { firstName, lastName, age, dateOfBooking, contact, address1 } = formData;
     if (!firstName) missingFields.push("First Name");
     if (!lastName) missingFields.push("Last Name");
+    if (!age) missingFields.push("Age");
+    if (!dateOfBooking) missingFields.push("Date of Booking");
     if (!contact) missingFields.push("Contact Number");
     if (!address1) missingFields.push("Address");
-    if (!address2) missingFields.push("Type of Test");
     if (selectedItems.length === 0) missingFields.push("Selected Items");
 
     if (missingFields.length > 0) {
@@ -391,12 +401,13 @@ const phoneRegExp =
 const checkoutSchema = yup.object().shape({
   firstName: yup.string().required("required"),
   lastName: yup.string().required("required"),
+  age: yup.number().required("required").positive().integer(),
+  dateOfBooking: yup.date().required("required"),
   contact: yup
     .string()
     .matches(phoneRegExp, "Phone number is not valid")
     .required("required"),
   address1: yup.string().required("required"),
-  address2: yup.string().required("required"),
 });
 
 
